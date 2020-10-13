@@ -20,6 +20,7 @@ By Salman Lee {.text-intro}
 
 - **简介**
 - **安装**
+- **运行**
 - **常用组件**
 - **样式**
 - **实现原理**
@@ -118,6 +119,30 @@ JDK 和 Android Studio
 [JDK](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html):官网下载或者homebrew搜索，要求jdk8也就是jdk1.8
 
 [Android Studio](https://developer.android.com/studio/index.html):官网下载或者homebrew搜索,安装有些繁琐直接上链接 [安装](https://reactnative.cn/docs/getting-started#1-%E5%AE%89%E8%A3%85-android-studio)
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 运行
+
+## IOS
+
+```
+cd AwesomeProject
+yarn ios
+# 或者
+yarn react-native run-ios
+# 也可以启用xCode打开主项目文件.xcworkspace，使用xCode如原生IOS应用一样运行
+```
+
+## Android
+
+```
+cd AwesomeProject
+yarn android
+# 或者
+yarn react-native run-android
+# 也可以使用Android Studio原生项目般的运行
+```
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
