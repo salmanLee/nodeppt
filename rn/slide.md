@@ -22,8 +22,9 @@ By Salman Lee {.text-intro}
 - **安装**
 - **常用组件**
 - **样式**
-- **路由**
+- **实现原理**
 - **调试**
+- **路由**
 - **自定义原生组件**
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
@@ -124,17 +125,17 @@ JDK 和 Android Studio
 
 - [View](https://reactnative.cn/docs/view):视图组件
 
-- [Text]():文本组件
+- [Text](https://www.reactnative.cn/docs/text):文本组件
 
-- [Image]():图片组件
+- [Image](https://www.reactnative.cn/docs/image):图片组件
 
-- [TextInput]():文本输入组件
+- [TextInput](https://www.reactnative.cn/docs/textinput):文本输入组件
 
-- [ScrollView]():滚动视图组件
+- [ScrollView](https://www.reactnative.cn/docs/scrollview):滚动视图组件
 
-- [Button]():按钮组件
+- [Button](https://www.reactnative.cn/docs/button):按钮组件
 
-- FlatList
+- [FlatList](https://www.reactnative.cn/docs/flatlist):列表组件
 
 ```
 import React, { Component } from "react";
@@ -160,3 +161,25 @@ class App extends Component {
 
 export default App;
 ```
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 样式
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 实现原理
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 调试
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 路由
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 自定义原生组件
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
