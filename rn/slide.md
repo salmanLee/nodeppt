@@ -183,3 +183,6 @@ export default App;
 # 自定义原生组件
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# END
+
