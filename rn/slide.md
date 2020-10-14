@@ -20,12 +20,13 @@ By Salman Lee {.text-intro}
 
 - **简介**
 - **安装**
+- **运行**
 - **常用组件**
 - **样式**
-- **实现原理**
 - **调试**
 - **路由**
 - **自定义原生组件**
+- **实现原理**
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
@@ -99,6 +100,12 @@ Node版本要>=12
 
 [Watchman](https://facebook.github.io/watchman/):则是由 Facebook 提供的监视文件系统变更的工具
 
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 安装 {.text-landing.text-shadow}
+
+## 完整原生环境
+
 ### Mac + IOS
 
 Xcode 和 CocoaPods
@@ -111,6 +118,12 @@ Xcode:mac app store 下载
 or
 `brew install cocoapods`
 
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 安装 {.text-landing.text-shadow}
+
+## 完整原生环境
+
 ### Mac + Android
 
 JDK 和 Android Studio
@@ -118,6 +131,40 @@ JDK 和 Android Studio
 [JDK](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html):官网下载或者homebrew搜索，要求jdk8也就是jdk1.8
 
 [Android Studio](https://developer.android.com/studio/index.html):官网下载或者homebrew搜索,安装有些繁琐直接上链接 [安装](https://reactnative.cn/docs/getting-started#1-%E5%AE%89%E8%A3%85-android-studio)
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 安装 {.text-landing.text-shadow}
+
+## 完整原生环境
+
+### 生成app脚手架
+
+`npx react-native init AwesomeProject`
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 运行
+
+## IOS
+
+```
+cd AwesomeProject
+yarn ios
+# 或者
+yarn react-native run-ios
+# 也可以启用xCode打开主项目文件.xcworkspace，使用xCode如原生IOS应用一样运行
+```
+
+## Android
+
+```
+cd AwesomeProject
+yarn android
+# 或者
+yarn react-native run-android
+# 也可以使用Android Studio原生项目般的运行
+```
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
@@ -166,21 +213,94 @@ export default App;
 
 # 样式
 
+```
+import {StyleSheet} from 'react-native';
+import { StyleSheet, Text, View , Dimensions } from 'react-native';
+
+const {width, height, scale} = Dimensions.get('window');
+
+const test = () => {
+    return (
+      <View style={styles.container}>
+        <View style={styles.demo1}>
+          <text style={styles.demo1Text}></text>
+        </View>
+        <View style={styles.demo2} />
+      </View>
+    );
+};
+
+const styles = StyleSheet.create({
+  container: {  
+    width: width
+  },
+  demo1:{
+    width:'100%',
+    height: 50
+  },
+  demo1Text:{
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  }
+  demo2:{
+   flex:1,
+  },
+});
+
+export default test;
+```
+
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
-# 实现原理
+# 样式
+
+## 与react区别大致于 
+
+1. 没有class，style用 StyleSheet.create({})创建;
+2. React Native 中的尺寸都是无单位的，表示的是与设备像素密度无关的逻辑像素点;
+3. 使用flex布局，默认方向为纵向排列{flexDirection: 'column'}，设置{flexDirection: 'row'}可以改横向,{justifyContent:'center',align-items:'center'}
+
+## [flex布局](https://www.reactnative.cn/docs/flexbox)
+
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
 # 调试
 
+- 真机摇一摇
+- Ios Simulator : cmd + D 
+- Android Emulator : cmd + M 
+
+ <img src="imgs/img1.png" width="100px" />
+
+## 特色
+
+- 实时相应 
+- 调试网络  
+- 调试样式   
+
+<img src="imgs/img2.png" width="120px" /> 
+
+<img src="imgs/img3.png" width="100px" />
+
+
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
 # 路由
 
+- [react-navigation](https://reactnavigation.org/)
+- [react-navigation中文网](https://www.reactnavigation.org.cn/)
+
+[快速开始](https://www.reactnavigation.org.cn/docs/guide-quick-start)
+
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
 # 自定义原生组件
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 实现原理
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
