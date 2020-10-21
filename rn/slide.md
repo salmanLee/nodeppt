@@ -353,7 +353,7 @@ WebKit 的 JavaScript 引擎的一个封装。包括几个类：
 
 # 实现原理
 
-## Bridge 到底是什么
+## 怎么创建 Bridge（自定义原生组件）
 
 [Android举例子](https://www.reactnative.cn/docs/native-modules-android)
 
