@@ -25,7 +25,6 @@ By Salman Lee {.text-intro}
 - **样式**
 - **调试**
 - **路由**
-- **自定义原生组件**
 - **实现原理**
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
@@ -251,7 +250,7 @@ const styles = StyleSheet.create({
 export default test;
 ```
 
-<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+<slide class="bg-black-blue " image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
 # 样式
 
@@ -296,11 +295,67 @@ export default test;
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
-# 自定义原生组件
+# 实现原理
+
+## 工作原理
+
+React Native 渲染 在 React 框架中，JSX 源码通过 React 框架最终渲染到了浏览器的真实 DOM 中，而在 React Native 框架中，JSX 源码通过 React Native 框架编译后，通过对应平台的 Bridge 实现了与原生框架的通信。如果我们在程序中调用了 React Native 提供的 API，那么 React Native 框架就通过 Bridge 调用原生框架中的方法。 因为 React Native 的底层为 React 框架，所以如果是 UI 层的变更，那么就映射为虚拟 DOM 后进行 diff 算法，diff 算法计算出变动后的 JSON 映射文件，最终由 Native 层将此 JSON 文件映射渲染到原生 App 的页面元素上，最终实现了在项目中只需要控制 state 以及 props 的变更来引起 iOS 与 Android 平台的 UI 变更。 编写的 React Native代码最终会打包生成一个 main.bundle.js 文件供 App 加载，此文件可以在 App 设备本地，也可以存放于服务器上供 App 下载更新，当将其放到服务器端也就为热更新提供了铺垫。
+
+
+<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+
+# 实现原理
+
+## 与端上通信
+
+在与原生框架通信中，React Native 采用了 JavaScriptCore 作为 JS VM，中间通过 JSON 文件与 Bridge 进行通信。而如果在使用 Chrome 浏览器进行调试时，那么所有的 JavaScript 代码都将运行在 Chrome 的 V8 引擎中，与原生代码通过 WebSocket 进行通信。
+<img src="imgs/img4.jpg" width="120px" /> 
+
+
+<slide class="bg-black-blue " image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+
+# 实现原理
+
+## JavaScriptCore
+
+WebKit 的 JavaScript 引擎的一个封装。包括几个类：
+
+1. JSContext 类似用来创建一个全局对象，如浏览器中的window对象。
+2. JSValue 一个JSValue实例就是一个JavaScript值的引用。
+3. JSManagedValue  JSValue的封装，用以解决JS和OC代码之间循环引用的问题。
+4. JSVirtualMachine 一个实例就是一个完整独立的JavaScript的执行环境，执行提供底层资源。
+5. JSExport JSExport是一个协议,通过实现它可以完成把一个native对象暴漏给JS。
+
+
+<slide class="bg-black-blue " image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+
+# 实现原理
+
+## Bridge 工作流程
+
+1. UIManager：在Native侧，是在iOS/Android里主要运行的线程。只有它有权限可以修改客户端UI。
+2. JS Thread：运行打包好的main.bundle.js文件，这个文件包含了RN的所有业务逻辑、行为和组件。
+3. Shadow Node/Tree：在Native层的一个组件树，可以帮助监听App内的UI变化，有点像ReactJS里的虚拟Dom和Dom之间的关系。
+4. Yoga：用来计算layout。是Facebook写的一个C引擎，用来把基于Flexbox的布局转换到Native的布局系统。
+
+理解了上面的一些基础概念，让我们来看下打开App时，每一步发生了什么：
+
+1. 用户点击App的图标
+2. UIManager线程：加载所有的Native库和Native组件比如 Text、Button、Image等
+告诉Js线程，Native部分准备好了，Js侧开始加载main.bundle.js，这里面包含了所有的js和react逻辑以及组件。
+3. Js侧通过Bridge发送一条JSON消息到Native侧，告诉Native怎么创建UI。值得一提的是：所有经过Bridge的通信都是异步的，并且是打包发送的。
+4. Shadow线程最先拿到消息，然后创建UI树
+5. 然后，它使用Yoga布局引擎去获取所有基于flex样式的布局，并且转化成Native的布局，宽、高、间距等。
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
 # 实现原理
+
+## Bridge 到底是什么
+
+[Android举例子](https://www.reactnative.cn/docs/native-modules-android)
 
 <slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
 
